@@ -1,1 +1,18 @@
+# eureka server 指定端口
+spring:
+  application:
+    name: ad-eureka
 
+#单机版本的eureka 指定端口，后期有集群配置
+server:
+  port: 8000
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false   #单机版本不用开启互相注册，集群版本需要开启(默认开启)
+    register-with-eureka: false  #时候允许自己注册进来，自己本身是服务端，不用自己注册自己
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   #注册的地址
