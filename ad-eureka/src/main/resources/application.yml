@@ -10,9 +10,55 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: localhost  #
   client:
-    fetch-registry: false   #单机版本不用开启互相注册，集群版本需要开启(默认开启)
-    register-with-eureka: false  #时候允许自己注册进来，自己本身是服务端，不用自己注册自己
+    fetch-registry: false   #是否可以从 eureka-server中获取服务信息，默认开启，单节点就不需要开启
+    register-with-eureka: false  #允许自己注册进来，自己本身是服务端，不用自己注册自己
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   #注册的地址
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   #注册的地址，查询服务的地址，都是依赖这个地址（默认也是这个地址）
+
+#集群版配置  可以通过打包，java -jar 来运行起来
+#---
+#spring:
+#  application:
+#    name: ad-eureka
+#  profiles: server1
+#server:
+#  port: 8000
+#eureka:
+#  instance:
+#    hostname: server1
+#    prefer-ip-address: false
+#  client:
+#    service-url:
+#      defaultZone: http://server2:8001/eureka/,http://server3:8002/eureka/
+#
+#---
+#spring:
+#  application:
+#    name: ad-eureka
+#  profiles: server2
+#server:
+#  port: 8001
+#eureka:
+#  instance:
+#    hostname: server2
+#    prefer-ip-address: false
+#  client:
+#    service-url:
+#      defaultZone: http://server1:8000/eureka/,http://server3:8002/eureka/
+#
+#---
+#spring:
+#  application:
+#    name: ad-eureka
+#  profiles: server3
+#server:
+#  port: 8002
+#eureka:
+#  instance:
+#    hostname: server3
+#    prefer-ip-address: false
+#  client:
+#    service-url:
+#      defaultZone: http://server1:8000/eureka/,http://server2:8001/eureka/
