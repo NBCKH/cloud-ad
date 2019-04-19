@@ -21,6 +21,7 @@
     <modules>
         <module>ad-eureka</module>
         <module>ad-gateway</module>
+        <module>ad-common</module>
     </modules>
 
     <properties>
