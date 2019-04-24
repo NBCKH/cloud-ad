@@ -22,6 +22,8 @@
         <module>ad-eureka</module>
         <module>ad-gateway</module>
         <module>ad-common</module>
+        <module>ad-sponsor</module>
+        <module>ad-search</module>
     </modules>
 
     <properties>
