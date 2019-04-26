@@ -1,0 +1,8 @@
+1.应用端发送http请求，请求被web容器接收，根据contextPath将请求发送到DispatcherServlet
+2.DispatcherServlet接收到请求，会设置一些属性(localeResolver,themeResolver),
+  再根据request在handlerMappings中查找到handlerExecutionChain,
+  然后根据HandlerExecutionChain中的handler来找到handlerAdapter,
+  然后通过反射来调用handler中对应的方法，(requestMapping中对应的方法)
+3.handler就是对应的controller,调用controller中对应的方法来进行业务逻辑处理，返回modelAndView(或者逻辑视图名称)
+4.viewResolver根据逻辑试图名称，试图前后缀，来获取实际的逻辑视图
+5.获取实际视图之后，就会使用model来渲染视图，得到用户实际看到的视图，返回给客户端
